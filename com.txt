@@ -1,0 +1,75 @@
+ 924  emacs TENSort.cxx  &
+  925  emacs TENSort.h &
+  926  make clena
+  927  make clean
+  928  make
+  929  emacs TENUnpack.cxx &
+  930  ls
+  931  exit
+  932  ls
+  933  go4 &
+  934  ls
+  935  pwd
+  936  scp -r daq@plutonium:/home/daq/ENSoft_devTrong ./
+  937  scp -r root@plutonium:/home/daq/ENSoft_devTrong ./
+  938  sudo scp -r root@plutonium:/home/daq/ENSoft_devTrong ./
+  939  su
+  940  sudo scp -r root@plutonium:/home/daq/ENSoft_devTrong ./
+  941  su
+  942  ls
+  943  cd Desktop/
+  944  ls
+  945  cd Online/
+  946  ls
+  947  cd Go4/
+  948  ls
+  949  cd EN_Course
+  950  ls
+  951  cd EN_Course_201
+  952  ls -la
+  953  sudo chown -R daq:daq EN_Course_2015
+  954  ls
+  955  ls -la
+  956  sudo chmod 775 EN_Course_2015
+  957  ls
+  958  ls -la
+  959  cd EN_Course_2015
+  960  ls
+  961  cd EN_CAGRA_28012015_Yassid/
+  962  ls
+  963  sudo gedit TArtProc.cxx &
+  964  gedit TArtProc.cxx &
+  965  make
+  966  sudo gedit segidlist.h 
+  967  gedit segidlist.h 
+  968  make
+  969  ls
+  970  make
+  971  go4 &
+  972  make
+  973  gedit TArtAnalysis.cxx &
+  974  make
+  975  root -l
+  976  go4 &
+  977  echo $TARTSYS 
+  978  cd /usr/local/
+  979  scp -r daq@plutonium:/usr/local/anaroot_v4.5.9.3 ./
+  980  sudo scp -r daq@plutonium:/usr/local/anaroot_v4.5.9.3 ./
+  981  ls
+  982  cd anaroot_v4.5.9.3/
+  983  ls
+  984  make clean
+  985  sudo make clean
+  986  cd ..
+  987  ls -la
+  988  sudo chown -R daq:daq anaroot_v4.5.9.3/
+  989  sudo chmod -R 755 anaroot_v4.5.9.3
+  990  cd anaroot_v4.5.9.
+  991  cd anaroot_v4.5.9.3
+  992   ./autogen.sh --prefix=$PWD
+  993  make install
+  994  ls
+  995  cd /home/daq/
+  996  ls
+  997  gedit .bashrc
+  998  history

@@ -1,0 +1,65 @@
+ #include "TENUnpack.h"
+
+TENUnpack::TENUnpack():ENvme(62,vector<int>(32,-1)){
+  nevt   = 0;
+  estore = new TArtEventStore(); 
+}
+
+TENUnpack::~TENUnpack(){}
+
+Bool_t TENUnpack::Open(const char *filename){
+  if(estore==0) estore	= new TArtEventStore();
+   bool flag		= 0;
+   flag			= estore->Open(filename);
+   rawevent		= estore->GetRawEventObject();
+   return flag;   
+}
+
+Bool_t TENUnpack::ENUnpackVME(TTree *tree){
+  if(tree==NULL) return false;
+  BuildTree(tree);
+  while(estore->GetNextEvent()){
+    Clear();
+    for(int i=0;i<rawevent->GetNumSeg();i++){
+      seg	      = rawevent->GetSegment(i);	//get segment
+      int	detid =	seg->GetDetector();
+      int	modid =	seg->GetModule();
+
+      vector< vector<int> > ENvme(32,vector<int>(64));
+      //      ENvme(64,vector<int>(32));
+      //      cout<<"Unpacking VME - Event number : "<<nevt<<endl;
+      //      cout<<"i = "<<i<<endl;
+
+      for(int j=0;j<seg->GetNumData();j++){
+	TArtRawDataObject	*d   = seg->GetData(j);	
+	int			 val = d->GetVal();
+	vector<int>ENModch;
+	ENModch.push_back(i);
+	ENvme[i][j]		     = val;
+	
+      }
+    }
+    
+    ENnevt=nevt;
+    tree->Fill();
+    nevt++;        
+    
+  }
+  return 1;
+}
+
+
+void TENUnpack::Clear(){
+  ENvme.clear();
+}
+
+Bool_t TENUnpack::BuildTree(TTree *tree){
+  if(tree==NULL){return 0;}
+  tree->Branch("ENvme",&ENvme);
+  tree->Branch("ENnevt",&ENnevt,"ENnevt/L");  
+  
+
+
+  
+  return 1;
+}
